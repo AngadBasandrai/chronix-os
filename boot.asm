@@ -8,10 +8,10 @@ start:
     mov ah, 0x0B ;;; set background color mode
     mov bh, 0x00
 
-    mov bl, 0x02 ;;; color to set to
+    mov bl, 0x01 ;;; color to set to
     int 0x10
 
-    mov ah, 0x0e
+
 
     mov bx, str1
     call printString
@@ -22,23 +22,20 @@ start:
     mov bx, str2
     call printString
 
+    mov dx, 0x91AF
+    call printHex
+
     jmp end
 
-printString:
-    mov al, [bx]
-    cmp al, 0
-    je _printString
-    int 0x10
-    add bx, 1
-    jmp printString
 
-_printString:
-    ret
+    ;;; Includes
+    %include "commands/print_string.asm"
+    %include "commands/print_hex.asm"
 
 ; Variables
 
-str1: db 'Hello World!', 0
-str2: db 'Bye!', 0
+str1: db 'String Test', 0
+str2: db 'Hex Test: ', 0
 nl: db 0xA, 0xD, 0
 
 end:
