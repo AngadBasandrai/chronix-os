@@ -29,8 +29,8 @@ start:
 
 
     ;;; Includes
-    %include "commands/print_string.asm"
-    %include "commands/print_hex.asm"
+    %include "functions/print_string.asm"
+    %include "functions/print_hex.asm"
 
 ; Variables
 
@@ -39,7 +39,7 @@ str2: db 'Hex Test: ', 0
 nl: db 0xA, 0xD, 0
 
 end:
-    jmp $
+    jmp end
 
 
 times 510-($-$$) db 0
