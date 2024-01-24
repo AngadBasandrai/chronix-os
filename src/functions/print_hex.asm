@@ -22,14 +22,14 @@ movTobx:
     mov [bx], al    ; at the place where bx is attached set value to al
     ror dx, 4   ; rotate right to turn second last bit into last bit for next iteraton
 
-    add cx, 1   ; increment counter
+    inc cx   ; increment counter
     jmp printHexLoop
 
 
     jmp printHexLoop
 
 _printHex:
-    mov bx, hexString
+    mov si, hexString
     call printString
     popa
     ret
