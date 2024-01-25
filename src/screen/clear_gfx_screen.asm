@@ -1,6 +1,6 @@
-clearScreen:
+clearGfxScreen:
     mov ah, 0x00 ;;; clear screen
-    mov al, 0x03
+    mov al, 0x13 ;;; 320x200, 256 color gfx mode
     int 0x10
 
     mov ah, 0x0B ;;; set background color mode

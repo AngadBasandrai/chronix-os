@@ -7,6 +7,8 @@ checkCommands:
     je 0x7c00 ;; jump to bootloader
     cmp al, 'P'
     je registers
+    cmp al, 'G'
+    je gfxModeTest
     jmp commandError
 
 fileTable:
@@ -19,6 +21,10 @@ registers:
     call printRegisters
     jmp _checkCommands
 
+gfxModeTest:
+    call clearGfxScreen
+    call gfxTest
+    jmp _checkCommands
 
 commandError:
     call printNewLine
