@@ -1,21 +1,20 @@
 
-    mov ah, 0x00 ;;; clear screen
-    mov al, 0x03
-    int 0x10
-
-    mov ah, 0x0B ;;; set background color mode
-    mov bh, 0x00
-    mov bl, 0x01 ;;; color to set to
-    int 0x10
+    call clearScreen
 
     mov si, welcome
     call printString
+    
+    call getInput
 
-    jmp $
-
+    cli ;; clear interrupts
+    hlt ;; halt
 
     ;;; Includes
     %include "src/functions/print_string.asm"
+    %include "src/functions/clear_screen.asm"
+    %include "src/functions/get_input.asm"
+    %include "src/functions/check_commands.asm"
+
     %include "src/utility/vars.asm"
 
-times 512-($-$$) db 0
+times 1024-($-$$) db 0

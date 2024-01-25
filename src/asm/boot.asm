@@ -1,7 +1,7 @@
 [org 0x7c00]
 
 start:
-    call loadKernel
+    call loadDisk
 
 %include "src/utility/disk_load.asm"
 

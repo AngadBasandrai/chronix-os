@@ -1,0 +1,1 @@
+{"buildTargets":["OS","boot.bin","fileTable.bin","kernel.bin"],"launchTargets":[],"customConfigurationProvider":{"workspaceBrowse":{"browsePath":[],"compilerArgs":[]},"fileIndex":[]}}
