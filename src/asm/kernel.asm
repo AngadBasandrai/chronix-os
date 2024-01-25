@@ -1,4 +1,3 @@
-
     call clearScreen
 
     mov si, welcome

@@ -3,6 +3,8 @@ checkCommands:
     mov al, [cmdString]
     cmp al, 'F' ;; TODO: change to check command list
     je fileTable
+    cmp al, 'R'
+    je 0x7c00 ;; jump to bootloader
     jmp commandError
 
 fileTable:
