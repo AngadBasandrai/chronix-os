@@ -1,6 +1,4 @@
 make.exe all --print-data-base --no-builtin-variables --no-builtin-rules --question
-make.exe: *** No rule to make target 'all'.  Stop.
-
 # GNU Make 4.2.1
 # Built for Windows32
 # Copyright (C) 1988-2016 Free Software Foundation, Inc.
@@ -8,7 +6,7 @@ make.exe: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Thu Jan 25 08:36:50 2024
+# Make data base, printed on Thu Jan 25 12:18:04 2024
 
 # Variables
 
@@ -67,7 +65,7 @@ VSCODE_CWD = C:\Users\a\AppData\Local\Programs\Microsoft VS Code
 # default
 MAKE_HOST := Windows32
 # environment
-PATH = C:\Program Files\Python312\Scripts\;C:\Program Files\Python312\;C:\src\flutter\bin;C:\Program Files (x86)\Common Files\Intel\Shared Libraries\redist\intel64_win\compiler;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files\Java\jdk1.8.0_281\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\MinGW\bin;C:\Program Files (x86)\GtkSharp\2.12\bin;C:\;C:\Program Files\mingw-w64\x86_64-8.1.0-posix-seh-rt_v6-rev0\mingw64\bin;C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\;C:\Program Files\Java\jdk1.8.0_281\bin;C:\chromedriver.exe;C:\Program Files\qemu;C:\Program Files\qemu\qemu-6.0.0;C:\Program Files (x86)\Eclipse\Sumo\bin\;C:\Program Files (x86)\Eclipse\Sumo\tools\;C:\Program Files\Microsoft SQL Server\150\Tools\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\;C:\Users\a\AppData\Local\bin\NASM;C:\Program Files\dotnet\;E:\C++\SDL\SDL2-2.0.22\lib\x64;C:\ProgramData\chocolatey\bin;C:\Program Files\Git\cmd;C:\Program Files\Git\mingw6;C:\Program Files\GitHub CLI\;C:\Program Files\Graphviz\bin;C:\src\flutter\bin;C:\Program Files\Java\jdk1.8.0_281\bin;C:\Users\a\AppData\Local\Microsoft\WindowsApps;C:\Users\a\AppData\Local\Programs\Microsoft VS Code\bin;C:\MinGW\bin;C:\Users\a\.dotnet\tools;C:\Program Files\mingw-w64\x86_64-8.1.0-posix-seh-rt_v6-rev0\mingw64\bin;C:\chromedriver.exe;C:\Program Files\qemu;C:\Program Files\qemu\qemu-6.0.0;C:\Users\a\AppData\Local\bin\NASM;C:\MinGW\bin;C:\Program Files\JetBrains\PyCharm Community Edition 2022.2.2\bin;;C:\Users\a\AppData\Roaming\npm;C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2023.1.2\bin;;"C:\Program Files\Git\bin\git.exe;C:\Program Files\Git\cmd;C:\Windows\System32";C:\Users\a\AppData\Local\GitHubDesktop\bin
+PATH = C:\Program Files\Python312\Scripts\;C:\Program Files\Python312\;C:\src\flutter\bin;C:\Program Files (x86)\Common Files\Intel\Shared Libraries\redist\intel64_win\compiler;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files\Java\jdk1.8.0_281\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\MinGW\bin;C:\Program Files (x86)\GtkSharp\2.12\bin;C:\;C:\Program Files\mingw-w64\x86_64-8.1.0-posix-seh-rt_v6-rev0\mingw64\bin;C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\;C:\Program Files\Java\jdk1.8.0_281\bin;C:\chromedriver.exe;C:\Program Files\qemu;C:\Program Files\qemu\qemu-6.0.0;C:\Program Files (x86)\Eclipse\Sumo\bin\;C:\Program Files (x86)\Eclipse\Sumo\tools\;C:\Program Files\Microsoft SQL Server\150\Tools\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\;C:\Users\a\AppData\Local\bin\NASM;C:\Program Files\dotnet\;E:\C++\SDL\SDL2-2.0.22\lib\x64;C:\ProgramData\chocolatey\bin;C:\Program Files\Git\cmd;C:\Program Files\Git\mingw6;C:\Program Files\GitHub CLI\;C:\Program Files\Graphviz\bin;C:\Program Files\LLVM\bin;C:\src\flutter\bin;C:\Program Files\Java\jdk1.8.0_281\bin;C:\Users\a\AppData\Local\Microsoft\WindowsApps;C:\Users\a\AppData\Local\Programs\Microsoft VS Code\bin;C:\MinGW\bin;C:\Users\a\.dotnet\tools;C:\Program Files\mingw-w64\x86_64-8.1.0-posix-seh-rt_v6-rev0\mingw64\bin;C:\chromedriver.exe;C:\Program Files\qemu;C:\Program Files\qemu\qemu-6.0.0;C:\Users\a\AppData\Local\bin\NASM;C:\MinGW\bin;C:\Program Files\JetBrains\PyCharm Community Edition 2022.2.2\bin;;C:\Users\a\AppData\Roaming\npm;C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2023.1.2\bin;;"C:\Program Files\Git\bin\git.exe;C:\Program Files\Git\cmd;C:\Windows\System32";C:\Users\a\AppData\Local\GitHubDesktop\bin
 # environment
 COMMONPROGRAMW6432 = C:\Program Files\Common Files
 # environment
@@ -89,7 +87,7 @@ ELECTRON_RUN_AS_NODE = 1
 # automatic
 %F = $(notdir $%)
 # environment
-CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_15588_ILWZTXYJTGEEJLNT
+CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_12448_UTATJBNEQGXSQNDH
 # environment
 COMPUTERNAME = ANGADSPC
 # environment
@@ -146,7 +144,10 @@ PROGRAMFILES(X86) = C:\Program Files (x86)
 LOCALAPPDATA = C:\Users\a\AppData\Local
 # environment
 PSMODULEPATH = C:\Program Files\WindowsPowerShell\Modules;C:\WINDOWS\system32\WindowsPowerShell\v1.0\Modules
-# default
+# defau 
+make.exe: *** No rule to make target 'all'.  Stop.
+
+lt
 MAKE_COMMAND := make.exe
 # default
 .VARIABLES := 
@@ -215,7 +216,7 @@ PROCESSOR_LEVEL = 23
 # environment
 FPS_BROWSER_APP_PROFILE_STRING = Internet Explorer
 # environment
-VSCODE_PID = 15588
+VSCODE_PID = 12448
 # environment
 USERDOMAIN_ROAMINGPROFILE = ANGADSPC
 # variable set hash-table stats:
@@ -227,7 +228,7 @@ USERDOMAIN_ROAMINGPROFILE = ANGADSPC
 
 # Directories
 
-# . (key e:/ASM/x86-asm-kernel, mtime 1706151628): 9 files, no impossibilities.
+# . (key e:/ASM/x86-asm-kernel, mtime 1706155663): 9 files, no impossibilities.
 
 # 9 files, no impossibilities in 1 directories.
 
@@ -310,6 +311,6 @@ OS:
 # strcache performance: lookups = 24 / hit rate = 33%
 # hash-table stats:
 # Load=16/8192=0%, Rehash=0, Collisions=1/24=4%
-# Finished Make data base on Thu Jan 25 08:36:50 2024
+# Finished Make data base on Thu Jan 25 12:18:04 2024
 
  

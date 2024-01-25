@@ -41,14 +41,5 @@ nextElement:
     jmp printFileTableLoop
 
 _printFileTableLoop:
-    call printNewLine
-_exitPrintFileTableLoop:
-    mov ah, 0x00
-    int 0x16
-    cmp al, 0x1B ;; 0x1B is escape
-    je return
-    jmp _exitPrintFileTableLoop
-
-return:
-    call printNewLine
+    times 2 call printNewLine
     ret
