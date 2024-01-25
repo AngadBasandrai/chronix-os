@@ -1,5 +1,6 @@
 getInput:
     mov di, cmdString
+    call printNewCommandSymbol
 
 getInputLoop:
 

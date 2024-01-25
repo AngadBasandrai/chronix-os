@@ -1,4 +1,6 @@
 make.exe all --print-data-base --no-builtin-variables --no-builtin-rules --question
+make.exe: *** No rule to make target 'all'.  Stop.
+
 # GNU Make 4.2.1
 # Built for Windows32
 # Copyright (C) 1988-2016 Free Software Foundation, Inc.
@@ -6,7 +8,7 @@ make.exe all --print-data-base --no-builtin-variables --no-builtin-rules --quest
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Thu Jan 25 08:18:27 2024
+# Make data base, printed on Thu Jan 25 08:36:50 2024
 
 # Variables
 
@@ -87,7 +89,7 @@ ELECTRON_RUN_AS_NODE = 1
 # automatic
 %F = $(notdir $%)
 # environment
-CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_3780_LQZAVLWOZYHJZFZC
+CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_15588_ILWZTXYJTGEEJLNT
 # environment
 COMPUTERNAME = ANGADSPC
 # environment
@@ -213,7 +215,7 @@ PROCESSOR_LEVEL = 23
 # environment
 FPS_BROWSER_APP_PROFILE_STRING = Internet Explorer
 # environment
-VSCODE_PID = 3780
+VSCODE_PID = 15588
 # environment
 USERDOMAIN_ROAMINGPROFILE = ANGADSPC
 # variable set hash-table stats:
@@ -225,7 +227,7 @@ USERDOMAIN_ROAMINGPROFILE = ANGADSPC
 
 # Directories
 
-# . (key e:/ASM/x86-asm-kernel, mtime 1706110011): 9 files, no impossibilities.
+# . (key e:/ASM/x86-asm-kernel, mtime 1706151628): 9 files, no impossibilities.
 
 # 9 files, no impossibilities in 1 directories.
 
@@ -308,8 +310,6 @@ OS:
 # strcache performance: lookups = 24 / hit rate = 33%
 # hash-table stats:
 # Load=16/8192=0%, Rehash=0, Collisions=1/24=4%
-# Finished Make data base on Thu Jan 25 08:18:27 2024
+# Finished Make data base on Thu Jan 25 08:36:50 2024
 
  
-make.exe: *** No rule to make target 'all'.  Stop.
-

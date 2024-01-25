@@ -2,6 +2,11 @@ welcome: db 'Kernel Booted!', 0xA, 0xD, '--------------', 0xA, 0xD, 0xA, 0xD, 'F
 
 nl: db 0xA, 0xD, 0
 
+fileTableHeading: db '--------------------------------', 0xA, 0xD,\
+ 'File/Program              Sector', 0xA,0xD,\
+ '--------------------------------', 0xA,0xD,\
+ 0xA,0xD,0
+
 success: db 'Command ran successfully!', 0xA, 0xD, 0
 
 failure: db 'Command not found!', 0xA, 0xD, 0

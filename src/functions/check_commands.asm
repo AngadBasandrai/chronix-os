@@ -2,17 +2,20 @@ checkCommands:
     mov byte [di], 0 ;; null terminate cmdString
     mov al, [cmdString]
     cmp al, 'F' ;; TODO: change to check command list
-    jne commandError
+    je fileTable
+    jmp commandError
+
+fileTable:
     mov si, nl
     call printString
-    mov si, success
+    call printFileTable
     jmp _checkCommands
 
 commandError:
     mov si, nl
     call printString
     mov si, failure
+    call printString
     
 _checkCommands:
-    call printString
     call getInput
