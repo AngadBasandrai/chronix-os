@@ -5,17 +5,23 @@ checkCommands:
     je fileTable
     cmp al, 'R'
     je 0x7c00 ;; jump to bootloader
+    cmp al, 'P'
+    je registers
     jmp commandError
 
 fileTable:
-    mov si, nl
-    call printString
+    call printNewLine
     call printFileTable
     jmp _checkCommands
 
+registers:
+    call printNewLine
+    call printRegisters
+    jmp _checkCommands
+
+
 commandError:
-    mov si, nl
-    call printString
+    call printNewLine
     mov si, failure
     call printString
     

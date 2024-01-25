@@ -2,7 +2,7 @@
 
 printHex:
     pusha   ;store register
-    mov cx, 0   ; init counter
+    xor cx, cx  ; init counter
 
 printHexLoop:
     cmp cx, 4   ; check if counter is 4
@@ -33,9 +33,3 @@ _printHex:
     call printString
     popa
     ret
-
-
-
-; Variables
-
-hexString: db '0x0000', 0

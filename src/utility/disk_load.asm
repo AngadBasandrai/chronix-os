@@ -31,7 +31,7 @@ loadKernel:
     mov ah, 0x02
 
     ;; no. of sectors to read
-    mov al, 0x01
+    mov al, 0x02
 
     ;; cylinder no.
     mov ch, 0x00
