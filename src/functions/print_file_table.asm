@@ -1,6 +1,6 @@
 printFileTable:
 
-    times 2 call printNewLine
+    call clearTextScreen
     
     mov si, fileTableHeading
     call printString
@@ -26,7 +26,7 @@ printFileTableLoop:
     jmp printFileTableLoop
 
 printSectorNumberLoop:
-    cmp cx, 14 ;; white space according to heading string
+    cmp cx, 28 ;; white space according to heading string
     je printFileTableLoop
     mov al, ' ' ;; print space
     int 0x10
@@ -42,4 +42,6 @@ nextElement:
 
 _printFileTableLoop:
     times 2 call printNewLine
-    ret
+    mov ah, 0x00
+    int 0x16
+    jmp mainMenu
