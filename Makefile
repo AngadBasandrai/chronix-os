@@ -1,9 +1,9 @@
 OS:
 	make boot.bin
-	make fileTable.bin
 	make kernel.bin
+	make fileTable.bin
 	make program1.bin
-	type bin\boot.bin bin\fileTable.bin bin\kernel.bin bin\program1.bin > OS.bin
+	type bin\boot.bin bin\kernel.bin bin\fileTable.bin bin\program1.bin > OS.bin
 	move OS.bin bin\OS.bin
 	del bin\boot.bin
 	del bin\fileTable.bin
