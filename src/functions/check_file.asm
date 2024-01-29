@@ -90,7 +90,6 @@ invalidSector:
 
 openFile:
     mov cl, al ; al had sector no.
-    push cx
 
     mov ah, 0x00 
     mov dl, 0x00
@@ -98,16 +97,16 @@ openFile:
 
     mov ah, 0x02
     mov al, 0x01
-    pop cx
     mov ch, 0x00
     mov dh, 0x00
+    mov dl, 0x80
 
     mov bx, 0x8000 ;; location to load file
     mov es, bx
     xor bx, bx
 
     ;; reads sectors
-    int 0x13   
+    int 0x13
     jnc fileLoaded ; jmp if carry flag not set
 
     mov si, unableToLoadMsg

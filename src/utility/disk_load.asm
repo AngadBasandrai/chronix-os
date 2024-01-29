@@ -16,6 +16,8 @@ loadFileTable:
     ;; head no.
     mov dh, 0x00
 
+    ;; drive no.
+    mov dl, 0x80 ;; 0x80 is the first hard drive
 
     ;; es:bx forms buffer address pointer
     mov bx, 0x1000
@@ -42,6 +44,8 @@ loadKernel:
     ;; head no.
     mov dh, 0x00
 
+    ;; drive no.
+    mov dl, 0x80 ;; 0x80 is the first hard drive
 
     ;; es:bx forms buffer address pointer
     mov bx, 0x2000
