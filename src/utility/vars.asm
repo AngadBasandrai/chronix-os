@@ -25,4 +25,14 @@ regString: db 0xA, 0xD, 'dx                ', 0
 
 hexString: db '0x0000', 0
 
+cmdLength: db 0
+
+fileNotFoundMsg: db 'File/Program Not Found!', 0xA, 0xD, 0
+
+invalidSectorMsg: db 'Sector Not Found!', 0xA, 0xD, 0
+
+unableToLoadMsg: db 'File/Program Not Loaded!', 0xA, 0xD, 0
+
+
+
 cmdString: db '', 0

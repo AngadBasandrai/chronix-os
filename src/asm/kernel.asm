@@ -17,6 +17,7 @@ end:
     %include "src/functions/print_hex.asm"
     %include "src/functions/get_input.asm"
     %include "src/functions/check_commands.asm"
+    %include "src/functions/check_file.asm"
     %include "src/functions/print_file_table.asm"
 
     %include "src/screen/clear_text_screen.asm"
@@ -26,4 +27,4 @@ end:
     %include "src/utility/macros.asm"
     %include "src/utility/vars.asm"
 
-times 1024-($-$$) db 0
+times 2048-($-$$) db 0

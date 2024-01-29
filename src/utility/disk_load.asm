@@ -31,12 +31,12 @@ loadKernel:
     mov ah, 0x02
 
     ;; no. of sectors to read
-    mov al, 0x02
+    mov al, 0x04
 
     ;; cylinder no.
     mov ch, 0x00
 
-    ;; sector no. (starts from 1 not 2)
+    ;; sector no. (starts from 1 not 0)
     mov cl, 0x03
 
     ;; head no.

@@ -16,7 +16,7 @@ printFileTableLoop:
     inc bx ;; to skip { in the beggining of file Table
     mov al, [ES:BX] ;; al = 0x1000:bx
     cmp al, '}' ;; end of fileTable
-    je _printFileTableLoop
+    je getFileName
     cmp al, '-' ;; diff bw program/file name and sector no
     je printSectorNumberLoop
     cmp al, ',' ;; next element in file Table

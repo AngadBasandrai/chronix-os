@@ -6,7 +6,7 @@ make.exe all --print-data-base --no-builtin-variables --no-builtin-rules --quest
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Thu Jan 25 12:18:04 2024
+# Make data base, printed on Mon Jan 29 08:31:03 2024
 
 # Variables
 
@@ -53,8 +53,6 @@ MAKEFILE_LIST :=  Makefile
 # environment
 FLUTTER_HOME = C:\src\flutter
 # environment
-FPS_BROWSER_USER_PROFILE_STRING = Default
-# environment
 TMP = C:\Users\a\AppData\Local\Temp
 # environment
 PROGRAMW6432 = C:\Program Files
@@ -87,7 +85,7 @@ ELECTRON_RUN_AS_NODE = 1
 # automatic
 %F = $(notdir $%)
 # environment
-CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_12448_UTATJBNEQGXSQNDH
+CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_8688_GPDMBWLQYOBRUBKR
 # environment
 COMPUTERNAME = ANGADSPC
 # environment
@@ -144,10 +142,7 @@ PROGRAMFILES(X86) = C:\Program Files (x86)
 LOCALAPPDATA = C:\Users\a\AppData\Local
 # environment
 PSMODULEPATH = C:\Program Files\WindowsPowerShell\Modules;C:\WINDOWS\system32\WindowsPowerShell\v1.0\Modules
-# defau 
-make.exe: *** No rule to make target 'all'.  Stop.
-
-lt
+# default
 MAKE_COMMAND := make.exe
 # default
 .VARIABLES := 
@@ -214,13 +209,11 @@ LANG = C
 # environment
 PROCESSOR_LEVEL = 23
 # environment
-FPS_BROWSER_APP_PROFILE_STRING = Internet Explorer
-# environment
-VSCODE_PID = 12448
+VSCODE_PID = 8688
 # environment
 USERDOMAIN_ROAMINGPROFILE = ANGADSPC
 # variable set hash-table stats:
-# Load=103/1024=10%, Rehash=0, Collisions=15/125=12%
+# Load=101/1024=10%, Rehash=0, Collisions=15/123=12%
 
 # Pattern-specific Variable Values
 
@@ -228,7 +221,7 @@ USERDOMAIN_ROAMINGPROFILE = ANGADSPC
 
 # Directories
 
-# . (key e:/ASM/x86-asm-kernel, mtime 1706155663): 9 files, no impossibilities.
+# . (key e:/ASM/x86-asm-kernel, mtime 1706457401): 9 files, no impossibilities.
 
 # 9 files, no impossibilities in 1 directories.
 
@@ -242,7 +235,7 @@ boot.bin:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 13):
+#  recipe to execute (from 'Makefile', line 15):
 	nasm src\asm\boot.asm -f bin -o boot.bin
 	move boot.bin bin\boot.bin
 
@@ -257,22 +250,30 @@ fileTable.bin:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 17):
+#  recipe to execute (from 'Makefile', line 19):
 	nasm src\asm\file_table.asm -f bin -o fileTable.bin
 	move fileTable.bin bin\fileTable.bin
 
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2024-01-24 18:38:03
+#  Last modified 2024-01-27 17:49:25
 #  File has been updated.
 #  Successfully updated.
+
+program1.bin:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 27):
+	nasm src\programs\program1.asm -f bin -o program1.bin
+	move program1.bin bin\program1.bin
 
 kernel.bin:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 21):
+#  recipe to execute (from 'Makefile', line 23):
 	nasm src\asm\kernel.asm -f bin -o kernel.bin
 	move kernel.bin bin\kernel.bin
 
@@ -290,27 +291,31 @@ OS:
 	make boot.bin
 	make fileTable.bin
 	make kernel.bin
-	type bin\boot.bin bin\fileTable.bin bin\kernel.bin > OS.bin
+	make program1.bin
+	type bin\boot.bin bin\fileTable.bin bin\kernel.bin bin\program1.bin > OS.bin
 	move OS.bin bin\OS.bin
 	del bin\boot.bin
 	del bin\fileTable.bin
 	del bin\kernel.bin
+	del bin\program1.bin
 	qemu-system-x86_64 -drive format=raw,file=bin\OS.bin
 
 # files hash-table stats:
-# Load=8/1024=1%, Rehash=0, Collisions=0/18=0%
+# Load=9/1024=1%, Rehash=0, Collisions=0/19=0%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 16 / storage = 113 B / avg = 7 B
-# current buf: size = 8162 B / used = 113 B / count = 16 / avg = 7 B
+# strcache buffers: 1 (0) / strings = 17 / storage = 126 B / avg = 7 B
+# current buf: size = 8162 B / used = 126 B / count = 17 / avg = 7 B
 
-# strcache performance: lookups = 24 / hit rate = 33%
+# strcache performance: lookups = 26 / hit rate = 34%
 # hash-table stats:
-# Load=16/8192=0%, Rehash=0, Collisions=1/24=4%
-# Finished Make data base on Thu Jan 25 12:18:04 2024
+# Load=17/8192=0%, Rehash=0, Collisions=1/26=4%
+# Finished Make data base on Mon Jan 29 08:31:03 2024
 
  
+make.exe: *** No rule to make target 'all'.  Stop.
+
