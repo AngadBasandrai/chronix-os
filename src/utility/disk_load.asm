@@ -55,8 +55,6 @@ loadFileTable:
     ;; reads sectors
     int 0x13   
 
-
-
     ;; reset segment registers
     mov ax, 0x2000
     mov ds, ax
