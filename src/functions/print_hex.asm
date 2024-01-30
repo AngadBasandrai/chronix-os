@@ -25,9 +25,6 @@ movTobx:
     inc cx   ; increment counter
     jmp printHexLoop
 
-
-    jmp printHexLoop
-
 _printHex:
     mov si, hexString
     call printString
