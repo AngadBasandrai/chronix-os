@@ -1,28 +1,28 @@
 OS:
-	make boot.bin
-	make kernel.bin
-	make fileTable.bin
-	make program1.bin
-	type bin\boot.bin bin\kernel.bin bin\fileTable.bin bin\program1.bin > OS.bin
-	move OS.bin bin\OS.bin
-	del bin\boot.bin
-	del bin\fileTable.bin
-	del bin\kernel.bin
-	del bin\program1.bin
-	qemu-system-x86_64 -drive format=raw,file=bin\OS.bin
+	make boot.iso
+	make kernel.iso
+	make fileTable.iso
+	make program1.iso
+	type bin\boot.iso bin\kernel.iso bin\fileTable.iso bin\program1.iso > OS.iso
+	move OS.iso bin\OS.iso
+	del bin\boot.iso
+	del bin\fileTable.iso
+	del bin\kernel.iso
+	del bin\program1.iso
+	qemu-system-x86_64 -drive format=raw,file=bin\OS.iso
 
-boot.bin:
-	nasm src\asm\boot.asm -f bin -o boot.bin
-	move boot.bin bin\boot.bin
+boot.iso:
+	nasm src\asm\boot.asm -f bin -o boot.iso
+	move boot.iso bin\boot.iso
 
-fileTable.bin:
-	nasm src\asm\file_table.asm -f bin -o fileTable.bin
-	move fileTable.bin bin\fileTable.bin
+fileTable.iso:
+	nasm src\asm\file_table.asm -f bin -o fileTable.iso
+	move fileTable.iso bin\fileTable.iso
 
-kernel.bin:
-	nasm src\asm\kernel.asm -f bin -o kernel.bin
-	move kernel.bin bin\kernel.bin
+kernel.iso:
+	nasm src\asm\kernel.asm -f bin -o kernel.iso
+	move kernel.iso bin\kernel.iso
 
-program1.bin:
-	nasm src\programs\program1.asm -f bin -o program1.bin
-	move program1.bin bin\program1.bin
+program1.iso:
+	nasm src\programs\program1.asm -f bin -o program1.iso
+	move program1.iso bin\program1.iso
