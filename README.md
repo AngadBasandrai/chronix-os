@@ -66,6 +66,7 @@ times 510-($-$$) db 0
 dw 0xAA55
 ```
 The first line pads out the first 510 bytes with 0's 
+
 The second line defines whether to use big endian or little endian, which defines in which order of significance bytes are read
 
 ## <a href="https://github.com/AngadBasandrai/x86-asm-os/blob/main/src/utility/disk_load.asm">disk_load.asm</a>
@@ -218,6 +219,55 @@ similarly ror dx, 4 results in
 ```
 
 In the end it moves hexString into 'si' and calls printString
+
+## <a href="https://github.com/AngadBasandrai/x86-asm-os/blob/main/src/functions/get_input.asm">get_input.asm</a>
+
+This function is called from the kernel.
+
+It takes input using ```ah = 0x00, int 0x16``` and stores it into cmdString using di as pointer
+
+```mov di, cmdString``` sets di equal to cmdString's location in memory
+
+```asm
+mov ah 0x00
+int 0x16
+```
+
+This code gets keystroke and puts the character into al
+
+```asm
+mov ah, 0x0e
+int 0x10
+```
+
+This code is used to actually print the character
+
+```asm
+cmp al, 0xD
+```
+
+In DOS systems a line ending consists of two seperate characters:
+1. LF (Line Feed)
+
+2. CR (Carriage Return)
+
+Line Feed or LF has the ASCII code 0xA, which moves the screen upwards by one line
+
+Carriage Return or CR has the ASCII code 0xD, which moves the cursor to the left of the screen
+
+For our case the enter key is read as 0xA, 0xD and so to check for enter key we check if al is 0xD or CR
+
+If so we go to checking the command
+
+Otherwise
+
+```asm
+mov [di], al
+inc di
+```
+This moves al to wherever di is pointing and then moves the pointer one space forward and loops
+
+---
 
 ## Contributors
 <table align="center">
