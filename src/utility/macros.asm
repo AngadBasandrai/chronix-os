@@ -19,3 +19,11 @@ printSpace:
     mov al, ' '
     int 0x10
     ret
+
+hexToChar: ; assume hex in al
+    add al, 0x30
+    cmp al, 0x39
+    jle _hexToChar
+    add al, 0x7
+_hexToChar:
+    ret

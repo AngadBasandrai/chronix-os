@@ -2,11 +2,11 @@
 ;;; 0-9: name
 ;;; 10-12: extension
 ;;; 13-14: sector
-;;; 15: no. of sectors
+;;; 15-16: no. of sectors
 
-db 'bootSect',0,0,'bin','01','1',\
-'kernel',0,0,0,0,'bin','02','4',\
-'fileTable',0,'txt','06','1',\
-'program1',0,0,'bin','07','1','}'
+db 'bootSect',0,0,'bin',0x0,0x1,0x0,0x1,\
+'kernel',0,0,0,0,'bin',0x0,0x2,0x0,0x4,\
+'fileTable',0,'txt',0x0,0x6,0x0,0x1,\
+'program1',0,0,'bin',0x0,0x7,0x0,0x1,'}'
 
 times 512-($-$$) db 0

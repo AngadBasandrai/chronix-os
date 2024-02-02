@@ -50,14 +50,20 @@ startSectorLoop:
     mov al, [ES:BX]
     cmp cx, 15
     je fileSize
+    call hexToChar
     int 0x10
     inc cx
     inc bx
     jmp startSectorLoop
 
 fileSize:
-    times 8 call printSpace
+    times 7 call printSpace
     mov al, [ES:BX]
+    call hexToChar
+    int 0x10
+    inc bx
+    mov al, [ES:BX]
+    call hexToChar
     int 0x10
     jmp nextElement
 
