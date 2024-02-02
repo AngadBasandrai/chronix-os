@@ -27,3 +27,11 @@ hexToChar: ; assume hex in al
     add al, 0x7
 _hexToChar:
     ret
+
+hexToCharD: ; assume hex in dl
+    add dl, 0x30
+    cmp dl, 0x39
+    jle _hexToCharD
+    add dl, 0x7
+_hexToCharD:
+    ret

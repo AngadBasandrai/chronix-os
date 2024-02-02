@@ -77,7 +77,5 @@ nextElement:
     jmp fileNameLoop
 
 _printFileTableLoop:
-    times 2 call printNewLine
-    mov ah, 0x00
-    int 0x16
-    jmp mainMenu
+    call printNewLine
+    jmp getFileName

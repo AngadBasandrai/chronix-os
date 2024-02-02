@@ -33,7 +33,7 @@ charCheckLoop:
     cmp al, [di]
     je startComparison
 
-    inc bx ; next char of file table
+    add bx, 17 ; next entry of file table
     jmp charCheckLoop
 
 startComparison:
@@ -56,7 +56,7 @@ comparisonLoop:
 restartFileSearch:
     mov di, cmdString
     pop bx
-    inc bx
+    add bx, 17
     jmp charCheckLoop
 
 fileNotFound:
@@ -65,23 +65,63 @@ fileNotFound:
     jmp endFileTable
 
 fileFound:
-    inc bx ; pointer was at '-' now move it to sector no.
+    pop bx
+    add bx, 13
     mov cl, 10 ; we need to multiply by 10
     xor al, al ; reset al
 
+
 sectorNumberLoop:
     mov dl, [ES:BX]
+    call hexToCharD
     inc bx
-    cmp dl, ',' ; end of sector no.
-    je openFile
-    cmp dl, 0x30 ; ascii of numbers is 48-57 (0x30 - 0x39)
+    cmp dl, 0x30 
     jl invalidSector
     cmp dl, 0x39
     jg invalidSector
-    sub dl, 0x30 ; if it is a number convert from ascii to actual no.
-    mul cl ; multiply al by cl, here multiplying by 10 to send to next tenths place
-    add al, dl ; add in ones places
-    jmp sectorNumberLoop
+    sub dl, 0x30
+    mul cl
+    add al, dl
+
+    mov dl, [ES:BX]
+    call hexToCharD
+    inc bx
+    cmp dl, 0x30
+    jl invalidSector
+    cmp dl, 0x39
+    jg invalidSector
+    sub dl, 0x30
+    mul cl
+    add al, dl
+
+    mov cl, al
+    push cx
+    xor al, al
+    mov cl, 10
+
+    mov dl, [ES:BX]
+    call hexToCharD
+    inc bx
+    cmp dl, 0x30 
+    jl invalidSector
+    cmp dl, 0x39
+    jg invalidSector
+    sub dl, 0x30
+    mul cl
+    add al, dl
+
+    mov dl, [ES:BX]
+    call hexToCharD
+    inc bx
+    cmp dl, 0x30
+    jl invalidSector
+    cmp dl, 0x39
+    jg invalidSector
+    sub dl, 0x30
+    mul cl
+    add al, dl
+
+    jmp openFile
 
 invalidSector:
     mov si, invalidSectorMsg
@@ -89,14 +129,12 @@ invalidSector:
     jmp endFileTable
 
 openFile:
-    mov cl, al ; al had sector no.
-
     mov ah, 0x00 
     mov dl, 0x00
     int 0x13 ;; reset disk system i.e. sends disk system to track 0
 
+    pop cx
     mov ah, 0x02
-    mov al, 0x01
     mov ch, 0x00
     mov dh, 0x00
     mov dl, 0x80
