@@ -126,7 +126,7 @@ This code jumps to the newly loaded location
 
 ## <a href="https://github.com/AngadBasandrai/x86-asm-os/blob/main/src/functions/print_string.asm">print_string.asm</a>
 
-This function uses ```ah = 0x0e, int 0x10``` to print the value inside at memory location in 'si'
+This function uses ```ah = 0x0e, int 0x10``` to print the value at memory location in 'si'
 
 The instructions ```pusha``` and ```popa``` are used to store and retrieve registers to and from the stack respectively
 
@@ -144,6 +144,7 @@ This compares al with 0
 je _printString
 ```
 ```je``` instruction jumps only if the two arguments of the previous compare (cmp) instruction were equal
+
 ∴ this above code only jumps to '_printString' if al = 0
 
 ```mov al, [si]``` is used over ```mov al, si``` because si acts as a memory location to the string and not the string itself

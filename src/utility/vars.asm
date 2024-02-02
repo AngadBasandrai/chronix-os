@@ -8,9 +8,9 @@ welcome: db 'Kernel Booted!', 0xA, 0xD, \
 
 nl: db 0xA, 0xD, 0
 
-fileTableHeading: db '--------------------------------', 0xA, 0xD, \
- 'File/Program              Sector', 0xA,0xD, \
- '--------------------------------', 0xA,0xD, \
+fileTableHeading: db '-------------------------------------------', 0xA, 0xD, \
+ 'File/Program    Extension    Sector    Size', 0xA,0xD, \
+ '-------------------------------------------', 0xA,0xD, \
  0xA, 0xD, 0
 
 printRegisterHeading: db '--------        ------', 0xA, 0xD, \
