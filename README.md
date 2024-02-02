@@ -1,7 +1,7 @@
 <h2 align="center"> &nbsp;&nbsp;x86 ASM OS</h2>
 <br/>
 
-> A basic OS that I am making in x86 Assembly
+> A basic OS that implemented in x86-asm
 
 ---
 
