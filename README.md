@@ -1,7 +1,7 @@
-<h2 align="center"> &nbsp;&nbsp;x86 ASM OS</h2>
+<h2 align="center"> &nbsp;&nbsp;Chronix OS</h2>
 <br/>
 
-> A basic OS that implemented in x86-asm
+> A basic OS that is implemented in x86-asm
 
 ---
 
