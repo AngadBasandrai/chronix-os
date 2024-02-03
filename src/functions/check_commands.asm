@@ -1,17 +1,47 @@
 checkCommands:
     mov byte [di], 0 ;; null terminate cmdString
-    mov al, [cmdString]
+    xor si, si
+    mov bx, [cmdString]
+    mov al, [bx]
+    xor cx, cx
     cmp al, 0
     je newLine
-    cmp al, 'F' ;; TODO: change to check command list
-    je fileTable
-    cmp al, 'R'
-    je 0x7c00 ;; jump to bootloader
-    cmp al, 'P'
-    je registers
-    cmp al, 'G'
-    je gfxModeTest
+    mov di, cmdList
+    dec di
+commandLoop:
+    xor cx, cx
+    mov al, [bx]
+    cmp al, [di]
+    je startCompare
+    jne nextElem
     jmp commandError
+
+startCompare:
+    inc di
+    inc cx
+    inc bx
+    mov al, [cmdString]
+    cmp al, [di]
+    je startCompare
+    cmp di, ','
+    je cmdFound
+    jmp nextElem
+
+nextElem:
+    inc di
+    cmp di, ','
+    je restartCommandLoop
+    jmp nextElem
+
+restartCommandLoop:
+    inc di
+    inc si
+    jmp commandLoop
+
+cmdFound:
+    cmp si, 0
+    je cmdFound
+    jmp _checkCommands
 
 fileTable:
     call printNewLine
