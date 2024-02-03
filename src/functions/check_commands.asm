@@ -1,6 +1,8 @@
 checkCommands:
     mov byte [di], 0 ;; null terminate cmdString
     mov al, [cmdString]
+    cmp al, 0
+    je newLine
     cmp al, 'F' ;; TODO: change to check command list
     je fileTable
     cmp al, 'R'
@@ -30,6 +32,10 @@ commandError:
     call printNewLine
     mov si, failure
     call printString
-    
+    jmp _checkCommands
+
+newLine:
+    times 2 call printNewLine
+
 _checkCommands:
     call getInput

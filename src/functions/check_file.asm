@@ -1,5 +1,6 @@
 getFileName:
     call printNewLine
+    call printNewCommandSymbol
     mov di, cmdString
     mov byte [cmdLength], 0
 
@@ -60,16 +61,50 @@ restartFileSearch:
     jmp charCheckLoop
 
 fileNotFound:
+    call printNewLine
     mov si, fileNotFoundMsg
     call printString
     jmp endFileTable
 
 fileFound:
     pop bx
-    add bx, 13
+    add bx, 10
+
+fileExtension:
+    mov di, fileExtensionString
+    mov al, [ES:BX]
+    mov [di], al
+    inc di
+    inc bx
+    mov al, [ES:BX]
+    mov [di], al
+    inc di
+    inc bx
+    mov al, [ES:BX]
+    mov [di], al
+    inc di
+    inc bx
+    mov byte [di], 0
+
+fileExtensionCheck:
+    mov al, [fileExtensionString]
+    cmp al, 't'
+    je textLoop
+    jmp sectorCheck
+
+textLoop:
+    mov al, [fileExtensionString+1]
+    cmp al, 'x'
+    jne sectorCheck
+    mov al, [fileExtensionString+2]
+    cmp al, 't'
+    jne sectorCheck
+    mov si, 0
+    push si
+
+sectorCheck:
     mov cl, 10 ; we need to multiply by 10
     xor al, al ; reset al
-
 
 sectorNumberLoop:
     mov dl, [ES:BX]
@@ -152,6 +187,10 @@ openFile:
     jmp endFileTable
 
 fileLoaded:
+    pop si
+    cmp si, 0
+    je txtFileFound
+    
     mov ax, 0x8000
     mov ds, ax
     mov es, ax
@@ -161,8 +200,4 @@ fileLoaded:
     jmp 0x8000:0x0000
 
 endFileTable:
-    mov ah, 0x00
-    int 0x16
-    cmp al, 0x1B
-    jne printFileTable
-    jmp mainMenu
+    jmp getFileName
