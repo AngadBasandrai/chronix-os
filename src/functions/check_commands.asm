@@ -1,16 +1,69 @@
 checkCommands:
-    mov byte [di], 0 ;; null terminate cmdString
-    mov al, [cmdString]
-    cmp al, 0
-    je newLine
-    cmp al, 'F' ;; TODO: change to check command list
+    mov byte [di], 0
+
+dirCmd:
+    xor cx, cx
+    mov di, cmdString
+    mov si, cmdDir
+    dec di
+    dec si
+dirCmdLoop:
+    cmp cx, 3
     je fileTable
-    cmp al, 'R'
-    je 0x7c00 ;; jump to bootloader
-    cmp al, 'P'
-    je registers
-    cmp al, 'G'
+    inc cx
+    inc di
+    inc si
+    mov al, [di]
+    cmp al, [si]
+    je dirCmdLoop
+
+gfxCmd:
+    xor cx, cx
+    mov di, cmdString
+    mov si, cmdGfx
+    dec di
+    dec si
+gfxCmdLoop:
+    cmp cx, 3
     je gfxModeTest
+    inc cx
+    inc di
+    inc si
+    mov al, [di]
+    cmp al, [si]
+    je gfxCmdLoop
+
+rbtCmd:
+    xor cx, cx
+    mov di, cmdString
+    mov si, cmdRbt
+    dec di
+    dec si
+rbtCmdLoop:
+    cmp cx, 3
+    je 0x7c00
+    inc cx
+    inc di
+    inc si
+    mov al, [di]
+    cmp al, [si]
+    je rbtCmdLoop
+
+prntregCmd:
+    xor cx, cx
+    mov di, cmdString
+    mov si, cmdPrntreg
+    dec di
+    dec si
+prntregCmdLoop:
+    cmp cx, 7
+    je registers
+    inc cx
+    inc di
+    inc si
+    mov al, [di]
+    cmp al, [si]
+    je prntregCmdLoop
     jmp commandError
 
 fileTable:
@@ -35,7 +88,7 @@ commandError:
     jmp _checkCommands
 
 newLine:
-    times 2 call printNewLine
+    call printNewLine
 
 _checkCommands:
     call getInput

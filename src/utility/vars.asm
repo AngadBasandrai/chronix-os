@@ -14,6 +14,14 @@ printRegisterHeading: db '--------        ------', 0xA, 0xD, \
 'Register        Memory', 0xA, 0xD,\
 '--------        ------', 0xA, 0xD, 0
 
+cmdDir: db 'dir',0
+
+cmdPrntreg: db 'prntreg',0
+
+cmdRbt: db 'rbt',0
+
+cmdGfx: db 'gfx',0
+
 success: db 'Command ran successfully!', 0xA, 0xD, 0
 
 failure: db 'Command not found!', 0xA, 0xD, 0
