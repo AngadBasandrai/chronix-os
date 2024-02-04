@@ -27,6 +27,5 @@ end:
     %include "src/utility/print_registers.asm"
     %include "src/utility/macros.asm"
     %include "src/utility/vars.asm"
-    %include "src/utility/commands.asm"
-
+    
 times 2048-($-$$) db 0

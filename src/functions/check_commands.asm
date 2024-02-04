@@ -1,47 +1,70 @@
 checkCommands:
-    mov byte [di], 0 ;; null terminate cmdString
-    xor si, si
-    mov bx, [cmdString]
-    mov al, [bx]
-    xor cx, cx
-    cmp al, 0
-    je newLine
-    mov di, cmdList
-    mov al, [di]
-    int 0x10
-commandLoop:
-    xor cx, cx
-    mov al, [bx]
-    cmp al, [di]
-    je startCompare
-    jne nextElem
+    mov byte [di], 0
 
-startCompare:
-    inc di
+dirCmd:
+    xor cx, cx
+    mov di, cmdString
+    mov si, cmdDir
+    dec di
+    dec si
+dirCmdLoop:
+    cmp cx, 3
+    je fileTable
     inc cx
-    inc bx
-    mov al, [bx]
-    cmp al, [di]
-    je startCompare
-    cmp di, ','
-    je cmdFound
-    jmp nextElem
-
-nextElem:
-    inc di
-    cmp di, ','
-    je restartCommandLoop
-    jmp nextElem
-
-restartCommandLoop:
     inc di
     inc si
-    jmp commandLoop
+    mov al, [di]
+    cmp al, [si]
+    je dirCmdLoop
 
-cmdFound:
-    cmp si, 0
-    je cmdFound
-    jmp _checkCommands
+gfxCmd:
+    xor cx, cx
+    mov di, cmdString
+    mov si, cmdGfx
+    dec di
+    dec si
+gfxCmdLoop:
+    cmp cx, 3
+    je gfxModeTest
+    inc cx
+    inc di
+    inc si
+    mov al, [di]
+    cmp al, [si]
+    je gfxCmdLoop
+
+rbtCmd:
+    xor cx, cx
+    mov di, cmdString
+    mov si, cmdRbt
+    dec di
+    dec si
+rbtCmdLoop:
+    cmp cx, 3
+    je 0x7c00
+    inc cx
+    inc di
+    inc si
+    mov al, [di]
+    cmp al, [si]
+    je rbtCmdLoop
+
+prntregCmd:
+    xor cx, cx
+    mov di, cmdString
+    mov si, cmdPrntreg
+    dec di
+    dec si
+prntregCmdLoop:
+    cmp cx, 7
+    je registers
+    inc cx
+    inc di
+    inc si
+    mov al, [di]
+    cmp al, [si]
+    je prntregCmdLoop
+    jmp commandError
 
 fileTable:
     call printNewLine
