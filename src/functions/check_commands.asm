@@ -7,20 +7,20 @@ checkCommands:
     cmp al, 0
     je newLine
     mov di, cmdList
-    dec di
+    mov al, [di]
+    int 0x10
 commandLoop:
     xor cx, cx
     mov al, [bx]
     cmp al, [di]
     je startCompare
     jne nextElem
-    jmp commandError
 
 startCompare:
     inc di
     inc cx
     inc bx
-    mov al, [cmdString]
+    mov al, [bx]
     cmp al, [di]
     je startCompare
     cmp di, ','
@@ -65,7 +65,7 @@ commandError:
     jmp _checkCommands
 
 newLine:
-    times 2 call printNewLine
+    call printNewLine
 
 _checkCommands:
     call getInput
