@@ -14,19 +14,11 @@ printFileTable:
 
 fileNameLoop:
     mov al, [ES:BX]
-    cmp al, 0 ;; end of fileTable
-    je fileNameEnd
     cmp cx, 10
     je fileExtensionPadding
     int 0x10
     inc cx
     inc bx
-    jmp fileNameLoop
-
-fileNameEnd:
-    call printSpace
-    inc bx
-    inc cx
     jmp fileNameLoop
 
 fileExtensionPadding:
@@ -71,7 +63,7 @@ nextElement:
     xor cx, cx
     inc bx
     mov al, [ES:BX]
-    cmp al, '}'
+    cmp al, '\'
     je _printFileTableLoop
     times 2 call printNewLine
     jmp fileNameLoop

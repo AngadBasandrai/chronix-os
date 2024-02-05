@@ -6,7 +6,7 @@ startFileSearch:
 
 charCheckLoop:
     mov al, [ES:BX] ; al has file table character
-    cmp al, '}'
+    cmp al, '\'
     je commandError
 
     cmp al, [di]
