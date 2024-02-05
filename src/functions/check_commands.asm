@@ -1,5 +1,10 @@
 checkCommands:
     mov byte [di], 0
+    mov di, cmdString
+    inc di
+    mov al, [di]
+    cmp al, 0
+    je newLine
 
 dirCmd:
     xor cx, cx
@@ -64,7 +69,7 @@ prntregCmdLoop:
     mov al, [di]
     cmp al, [si]
     je prntregCmdLoop
-    jmp commandError
+    jmp startFileSearch
 
 fileTable:
     call printNewLine
@@ -86,9 +91,7 @@ commandError:
     mov si, failure
     call printString
     jmp _checkCommands
-
 newLine:
     call printNewLine
-
 _checkCommands:
     call getInput

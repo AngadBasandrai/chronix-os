@@ -1,7 +1,7 @@
 printFileTable:
+ 
+    call printNewLine
 
-    call clearTextScreen
-    
     mov si, fileTableHeading
     call printString
 
@@ -78,4 +78,4 @@ nextElement:
 
 _printFileTableLoop:
     call printNewLine
-    jmp getFileName
+    jmp getInput

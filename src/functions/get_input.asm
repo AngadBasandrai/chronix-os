@@ -1,5 +1,6 @@
 getInput:
     mov di, cmdString
+    mov byte [cmdLength], 0
     call printNewCommandSymbol
 
 getInputLoop:
@@ -12,6 +13,7 @@ getInputLoop:
     cmp al, 0x0D
     je checkCommands
 
+    inc byte [cmdLength]
     mov [di], al ;; effectively => mov cmdString[idx], al
     inc di
     jmp getInputLoop

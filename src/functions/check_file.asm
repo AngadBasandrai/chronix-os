@@ -1,35 +1,13 @@
-getFileName:
-    call printNewLine
-    call printNewCommandSymbol
-    mov di, cmdString
-    mov byte [cmdLength], 0
-
-inputFileNameLoop:
-    mov ah, 0x00
-    int 0x16
-    mov ah, 0x0e
-
-    cmp al, 0x1B ; 0x1B is escape key
-    je mainMenu
-
-    int 0x10
-
-    cmp al, 0xD
-    je startFileSearch
-
-    inc byte [cmdLength]
-    mov [di], al
-    inc di
-    jmp inputFileNameLoop
-
 startFileSearch:
     mov di, cmdString ; di points to start of cmdString
+    mov ax, 0x1000
+    mov es, ax
     xor bx, bx ; reset bx so that es:bx points to start of file table
 
 charCheckLoop:
     mov al, [ES:BX] ; al has file table character
     cmp al, '}'
-    je fileNotFound
+    je commandError
 
     cmp al, [di]
     je startComparison
@@ -59,12 +37,6 @@ restartFileSearch:
     pop bx
     add bx, 17
     jmp charCheckLoop
-
-fileNotFound:
-    call printNewLine
-    mov si, fileNotFoundMsg
-    call printString
-    jmp endFileTable
 
 fileFound:
     pop bx
@@ -200,4 +172,4 @@ fileLoaded:
     jmp 0x8000:0x0000
 
 endFileTable:
-    jmp getFileName
+    jmp getInput
