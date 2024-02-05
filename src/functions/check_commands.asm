@@ -2,7 +2,7 @@ checkCommands:
     mov byte [di], 0
     mov di, cmdString
     inc di
-    mov al, [di]
+    mov al, [cmdLength]
     cmp al, 0
     je newLine
 
