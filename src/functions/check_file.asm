@@ -159,16 +159,17 @@ openFile:
     jmp endFileTable
 
 fileLoaded:
-    pop si
-    cmp si, 0
-    je txtFileFound
-    
     mov ax, 0x8000
     mov ds, ax
     mov es, ax
     mov fs, ax
     mov gs, ax
     mov ss, ax
+
+    pop si
+    cmp si, 0
+    je txtFileFound
+
     jmp 0x8000:0x0000
 
 endFileTable:
