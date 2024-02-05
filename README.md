@@ -1,4 +1,4 @@
-<h2 align="center"> &nbsp;&nbsp;Chronix OS</h2>
+<h1 align="center"> &nbsp;&nbsp;Chronix OS</h1>
 <br/>
 
 > A basic OS that is implemented in x86-asm
