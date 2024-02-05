@@ -55,6 +55,8 @@ $ git clone https://github.com/AngadBasandrai/x86-asm-os.git
 
 # Explanation
 
+## NOTE: THIS CODE WAS WRITTEN ACCORDING TO NASM AND THERE MAY BE ISSUES WITH OTHER ASSEMBLERS
+
 ## <a href="https://github.com/AngadBasandrai/x86-asm-os/blob/main/src/asm/boot.asm">boot.asm</a>
 ```asm
 [org 0x7c00]
