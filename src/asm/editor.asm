@@ -35,8 +35,7 @@ addToCode:
     rol byte [hexByte], 4 ;; shifts hexByte 4 bits left i.e one digit left
     or byte [hexByte], al ;; put al into 2nd digit
     mov al, [hexByte]
-    mov [di], al ;; add hexByte to hexCode
-    inc di
+    stosb   ; equivalent to mov [di],al inc di
     xor cx, cx
     mov al, ' '
     int 0x10
