@@ -13,6 +13,13 @@ getInputLoop:
     cmp al, 0x0D
     je checkCommands
 
+    cmp al, 0x08
+    jne notBackspace
+    dec di
+    dec byte [cmdLength]
+    jmp getInputLoop
+
+notBackspace:
     inc byte [cmdLength]
     mov [di], al ;; effectively => mov cmdString[idx], al
     inc di
