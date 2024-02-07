@@ -17,8 +17,8 @@ mov gs, ax
 
 jmp 0x2000:0x0000
 
-%include "include/functions/print_string.asm"
-%include "include/screen/clear_text_screen.asm"
+%include "include/functions/print_string.inc"
+%include "include/screen/clear_text_screen.inc"
 
 pgmLoadedMsg: db 'Program 1, Loaded', 0xA, 0xD, 0
 

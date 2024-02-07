@@ -72,7 +72,7 @@ loadFileTable:
 
     mov ah, 0x0B ;;; set color pallete
     mov bh, 0x00
-    mov bl, 0x01 ;;; bg color to set to
+    mov bl, 0x01 ;;; bg color to set 
     int 0x10
 
     ;; jump to newly loaded address

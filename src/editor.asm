@@ -115,7 +115,7 @@ bottomMsg: db 'E', 0x1F, 'd', 0x1F,'i', 0x1F,'t', 0x1F,'o', 0x1F,'r', 0x1F,':', 
 
 hexCode: times 255 db 0
 
-    %include "include/screen/clear_text_screen.asm"
-    %include "include/functions/print_string.asm"
+    %include "include/screen/clear_text_screen.inc"
+    %include "include/functions/print_string.inc"
 
 times 1024-($-$$) db 0
