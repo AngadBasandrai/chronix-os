@@ -66,5 +66,14 @@ loadFileTable:
     mov ax, 0x9000
     mov ss, ax 
 
+    mov ah, 0x00
+    mov al, 0x03 ;;; set 80*25 txt mode 16 colors
+    int 0x10
+
+    mov ah, 0x0B ;;; set color pallete
+    mov bh, 0x00
+    mov bl, 0x01 ;;; bg color to set to
+    int 0x10
+
     ;; jump to newly loaded address
     jmp 0x2000:0x0000

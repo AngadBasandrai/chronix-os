@@ -6,6 +6,8 @@ txtFileFound:
     mov dx, cx
     push dx
     xor cx, cx
+    mov ax, 0x8000
+    mov es, ax
     xor bx, bx
 
 fileLoop:
