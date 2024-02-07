@@ -61,7 +61,10 @@ loadFileTable:
     mov es, ax
     mov fs, ax
     mov gs, ax
-    mov ss, ax
+
+    mov sp, 0xFFFF ; stack pointer
+    mov ax, 0x9000
+    mov ss, ax 
 
     ;; jump to newly loaded address
     jmp 0x2000:0x0000

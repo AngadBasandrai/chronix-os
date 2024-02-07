@@ -1,5 +1,10 @@
 txtFileFound:
+    push ax
     call clearTextScreen
+    pop ax
+    imul cx, ax, 512
+    mov dx, cx
+    push dx
     xor cx, cx
     xor bx, bx
 
@@ -12,7 +17,7 @@ fileTxt:
     int 0x10
     inc bx
     inc cx
-    cmp cx, 512
+    cmp cx, dx
     je endReadFile
     jmp fileLoop
 
@@ -32,6 +37,5 @@ endReadFile:
     mov es, ax
     mov fs, ax
     mov gs, ax
-    mov ss, ax
 
     jmp 0x2000:0x0000

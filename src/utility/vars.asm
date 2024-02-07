@@ -20,6 +20,8 @@ cmdRbt: db 'rbt', 0
 
 cmdGfx: db 'gfx', 0
 
+cmdShutdown: db 'shutdown', 0
+
 success: db 'Command ran successfully!', 0xA, 0xD, 0
 
 failure: db 'Command not found!', 0xA, 0xD, 0

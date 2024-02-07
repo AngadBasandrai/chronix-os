@@ -169,7 +169,6 @@ fileLoaded:
     mov es, ax
     mov fs, ax
     mov gs, ax
-    mov ss, ax
 
     jmp 0x8000:0x0000
 

@@ -69,6 +69,22 @@ prntregCmdLoop:
     mov al, [di]
     cmp al, [si]
     je prntregCmdLoop
+
+shutdownCmd:
+    xor cx, cx
+    mov di, cmdString
+    mov si, cmdShutdown
+    dec di
+    dec si
+shutdownCmdLoop:
+    cmp cx, 8
+    je shutdown
+    inc cx
+    inc di
+    inc si
+    mov al, [di]
+    cmp al, [si]
+    je shutdownCmdLoop
     jmp startFileSearch
 
 fileTable:
@@ -85,6 +101,11 @@ gfxModeTest:
     call clearGfxScreen
     call gfxTest
     jmp _checkCommands
+
+shutdown:
+    mov ax, 0x2000
+    mov dx, 0x0604
+    out dx, ax
 
 commandError:
     call printNewLine
