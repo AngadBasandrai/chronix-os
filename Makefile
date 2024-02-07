@@ -14,21 +14,21 @@ OS:
 	qemu-system-x86_64 -drive format=raw,file=bin\OS.iso
 
 boot.iso:
-	nasm src\asm\boot.asm -f bin -o boot.iso
+	nasm src\boot.asm -f bin -o boot.iso
 	move boot.iso bin\boot.iso
 
 fileTable.iso:
-	nasm src\asm\file_table.asm -f bin -o fileTable.iso
+	nasm src\file_table.asm -f bin -o fileTable.iso
 	move fileTable.iso bin\fileTable.iso
 
 kernel.iso:
-	nasm src\asm\kernel.asm -f bin -o kernel.iso
+	nasm src\kernel.asm -f bin -o kernel.iso
 	move kernel.iso bin\kernel.iso
 
 program1.iso:
-	nasm src\programs\program1.asm -f bin -o program1.iso
+	nasm src\program1.asm -f bin -o program1.iso
 	move program1.iso bin\program1.iso
 
 editor.iso:
-	nasm src\asm\editor.asm -f bin -o editor.iso
+	nasm src\editor.asm -f bin -o editor.iso
 	move editor.iso bin\editor.iso

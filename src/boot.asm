@@ -3,7 +3,7 @@
 start:
     call loadDisk
 
-%include "src/utility/disk_load.asm"
+%include "include/utility/disk_load.asm"
 
 times 510-($-$$) db 0
 dw 0xAA55
