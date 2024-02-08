@@ -85,6 +85,16 @@ shutdownCmdLoop:
     mov al, [di]
     cmp al, [si]
     je shutdownCmdLoop
+    jmp fileCheck
+
+fileCheck:
+    push ax
+    mov ax, 0x8000
+    mov fs, ax
+    pop ax
+    xor bx, bx
+    push fs
+    push bx
     jmp startFileSearch
 
 fileTable:

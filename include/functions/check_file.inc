@@ -146,9 +146,9 @@ openFile:
     mov dh, 0x00
     mov dl, 0x80
 
-    mov bx, 0x8000 ;; location to load file
+    mov bx, fs
     mov es, bx
-    xor bx, bx
+    pop bx
 
     ;; reads sectors
     int 0x13
@@ -164,13 +164,13 @@ fileLoaded:
     cmp si, 0
     je txtFileFound
 
-    mov ax, 0x8000
+    mov ax, es
     mov ds, ax
     mov es, ax
     mov fs, ax
     mov gs, ax
 
-    jmp 0x8000:0x0000
+    jmp [es:bx]
 
 endFileTable:
     jmp getInput
