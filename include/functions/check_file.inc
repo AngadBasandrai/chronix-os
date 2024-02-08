@@ -1,3 +1,7 @@
+;; fs: location
+;; bx: offset
+;; si: fileType
+
 startFileSearch:
     mov di, cmdString ; di points to start of cmdString
     mov ax, 0x1000
