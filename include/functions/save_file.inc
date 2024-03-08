@@ -5,9 +5,18 @@ save_file:
     xor ax, ax
     mov es, ax
     mov di, 0x1000
-
     
+    mov bx, 0x1000
+    mov fs, bx
+    xor bx, bx
 
+    rewriteFileTable:
+        mov al, [FS:BX]
+        cmp al, '\'
+        je new_file
+        stosb
+        inc bx
+        jmp rewriteFileTable
 
     new_file:
         mov cx, 10
@@ -23,6 +32,8 @@ save_file:
         mov al, 0x0
         stosb
         mov al, 0x1
+        stosb
+        mov al, '\'
         stosb
 
     mov ah, 0x03
