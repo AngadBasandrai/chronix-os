@@ -56,8 +56,7 @@ addToCode:
     jmp returnToLoop
 
 executeCode:
-    call addReturnCommand
-    call hexCode
+    call save_file
 
     jmp startEditor
 
@@ -117,5 +116,8 @@ hexCode: times 511 db 0
 
     %include "include/screen/clear_text_screen.inc"
     %include "include/functions/print_string.inc"
+    %include "include/functions/print_hex.inc"
+    %include "include/functions/save_file.inc"
+    %include "include/utility/vars.inc"
 
-times 1024-($-$$) db 0
+times 2048-($-$$) db 0

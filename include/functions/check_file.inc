@@ -173,8 +173,9 @@ fileLoaded:
     mov es, ax
     mov fs, ax
     mov gs, ax
+    mov ss, ax
 
-    jmp [es:bx]
+    jmp 0x8000:0x0000 ;; find a way to use es:bx
 
 endFileTable:
     jmp getInput
