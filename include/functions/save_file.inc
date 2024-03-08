@@ -1,4 +1,4 @@
-save_file:
+saveFile:
     ;; TODO: check file in fileTable
     ;; TODO: fix
 
@@ -13,14 +13,14 @@ save_file:
     rewriteFileTable:
         mov al, [FS:BX]
         cmp al, '\'
-        je new_file
+        je newFile
         stosb
         inc bx
         jmp rewriteFileTable
 
-    new_file:
+    newFile:
         mov cx, 10
-        mov si, file_name
+        mov si, fileName
         rep movsb
         mov cx, 3
         mov si, type
@@ -44,7 +44,8 @@ save_file:
     mov dl, 0x80
     mov bx, 0x1000
     int 0x13
+
     ret
 
-file_name: db 'programS  '
+fileName: db 'programS  '
 type: db 'bin'
