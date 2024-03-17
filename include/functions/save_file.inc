@@ -39,11 +39,50 @@ saveFile:
     mov ah, 0x03
     mov al, 0x01
     xor ch, ch
-    mov cl, 06h
+    mov cl, 0x06
     mov dh, 0
     mov dl, 0x80
     mov bx, 0x1000
     int 0x13
+
+    xor ax, ax
+    mov es, ax
+
+    mov ah, 0x02
+    mov al, 0x01
+    xor ch, ch
+    mov cl, 0x11
+    mov dh, 0
+    mov dl, 0x80
+    mov bx, 0x9000
+    int 0x13
+
+    mov di, 0x9000
+
+    mov si, hexCode
+    
+    xor cx, cx
+
+    writeData:
+        cmp cx, 512
+        je writeSector
+        mov dx, [si]
+        and dx, 0x00FF
+        mov [es:di], dx
+        add di, 2
+        inc si
+        inc cx
+        jmp writeData
+
+    writeSector:
+        mov ah, 0x03
+        mov al, 0x01
+        xor ch, ch
+        mov cl, 0x11
+        mov dh, 0
+        mov dl, 0x80
+        mov bx, 0x9000
+        int 0x13
 
     ret
 
