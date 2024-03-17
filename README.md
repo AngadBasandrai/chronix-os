@@ -52,7 +52,7 @@ $ git clone https://github.com/AngadBasandrai/x86-asm-os.git
 > choco install make
 ```
 
-## NOTE: THIS CODE WAS WRITTEN ACCORDING TO NASM AND THERE MAY BE ISSUES WITH OTHER ASSEMBLERS
+## NOTE: This code was written for NASM and there may be compatibility issues with other assemblers
 
 ---
 
