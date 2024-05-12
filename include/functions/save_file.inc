@@ -51,7 +51,7 @@ saveFile:
     mov ah, 0x02
     mov al, 0x01
     xor ch, ch
-    mov cl, 0x11
+    mov cl, 0x0B
     mov dh, 0
     mov dl, 0x80
     mov bx, 0x9000
@@ -78,11 +78,23 @@ saveFile:
         mov ah, 0x03
         mov al, 0x01
         xor ch, ch
-        mov cl, 0x11
+        mov cl, 0x0B
         mov dh, 0
         mov dl, 0x80
         mov bx, 0x9000
         int 0x13
+
+    ;; Reload File Table
+    mov ah, 0x02
+    mov al, 0x01
+    mov ch, 0x00
+    mov cl, 0x06
+    mov dh, 0x00
+    mov dl, 0x80
+    mov bx, 0x1000
+    mov es, bx
+    mov bx, 0x0000
+    int 0x13
 
     ret
 
