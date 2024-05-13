@@ -5,15 +5,9 @@ OS:
 	make program1.iso
 	make editor.iso
 	make padding.iso
-	type bin\boot.iso bin\kernel.iso bin\fileTable.iso bin\program1.iso bin\editor.iso bin\padding.iso > OS.iso
-	move OS.iso bin\OS.iso
-	del bin\boot.iso
-	del bin\fileTable.iso
-	del bin\kernel.iso
-	del bin\program1.iso
-	del bin\editor.iso
-	del bin\padding.iso
-	qemu-system-x86_64 -drive format=raw,file=bin\OS.iso
+	make OS.iso
+	make clean
+	make run
 
 boot.iso:
 	nasm src\boot.asm -f bin -o boot.iso
@@ -38,3 +32,18 @@ editor.iso:
 padding.iso:
 	nasm src\padding.asm -f bin -o padding.iso
 	move padding.iso bin\padding.iso
+
+OS.iso:
+	type bin\boot.iso bin\kernel.iso bin\fileTable.iso bin\program1.iso bin\editor.iso bin\padding.iso > OS.iso
+	move OS.iso bin\OS.iso
+
+clean:
+	del bin\boot.iso
+	del bin\fileTable.iso
+	del bin\kernel.iso
+	del bin\program1.iso
+	del bin\editor.iso
+	del bin\padding.iso
+
+run:
+	qemu-system-x86_64 -drive format=raw,file=bin\OS.iso
