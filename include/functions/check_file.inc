@@ -145,6 +145,12 @@ openFile:
     int 0x13 ;; reset disk system i.e. sends disk system to track 0
 
     pop cx
+    pusha
+    mov dx, cx
+    call printHex
+    mov ah, 0x00
+    int 0x16
+    popa
     mov ah, 0x02
     mov ch, 0x00
     mov dh, 0x00

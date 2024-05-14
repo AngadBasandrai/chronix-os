@@ -27,7 +27,7 @@ saveFile:
         rep movsb
         mov al, 0x1
         stosb
-        mov al, 0x1
+        mov al, 0x2
         stosb
         mov al, 0x0
         stosb
@@ -51,7 +51,7 @@ saveFile:
     mov ah, 0x02
     mov al, 0x01
     xor ch, ch
-    mov cl, 0x0B
+    mov cl, 0x0C
     mov dh, 0
     mov dl, 0x80
     mov bx, 0x9000
@@ -78,7 +78,7 @@ saveFile:
         mov ah, 0x03
         mov al, 0x01
         xor ch, ch
-        mov cl, 0x0B
+        mov cl, 0x0C
         mov dh, 0
         mov dl, 0x80
         mov bx, 0x9000
