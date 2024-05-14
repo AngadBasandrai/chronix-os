@@ -67,11 +67,10 @@ saveFile:
         cmp cx, 512
         je writeSector
         mov dx, [si]
-        and dx, 0x00FF
         mov [es:di], dx
         add di, 2
-        inc si
-        inc cx
+        add si, 2
+        add cx, 2
         jmp writeData
 
     writeSector:
