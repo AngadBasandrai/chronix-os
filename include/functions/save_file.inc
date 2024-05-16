@@ -1,6 +1,44 @@
 saveFile:
     ;; TODO: check file in fileTable
-    ;; TODO: fix
+    times 3 call printNewLine
+    mov si, fileNameEnterMsg
+    call printString
+    mov di, fileName
+    xor cx, cx
+    fileNameLoop:
+        mov ah, 0x00
+        int 0x16
+        mov ah, 0x0e
+        int 0x10
+        cmp al, 0x0D
+        je fileExt
+        mov [di], al
+        inc di
+        inc cx
+        cmp cx, 10
+        je fileExt
+        jmp fileNameLoop
+    fileExt:
+        call printNewLine
+        mov si, fileExtMsg
+        call printString
+        mov di, type
+        xor cx, cx
+    fileExtLoop:
+        mov ah, 0x00
+        int 0x16
+        mov ah, 0x0e
+        int 0x10
+        cmp al, 0x0D
+        je saveStart
+        mov [di], al
+        inc di
+        inc cx
+        cmp cx, 3
+        je saveStart
+        jmp fileExtLoop
+
+    saveStart:
 
     xor ax, ax
     mov es, ax
@@ -97,5 +135,7 @@ saveFile:
 
     ret
 
-fileName: db 'programS  '
-type: db 'bin'
+fileName: db '          ', 0
+type: db '   ', 0
+fileNameEnterMsg: db 'Enter File Name: ', 0
+fileExtMsg: db 'Enter File Extension: ', 0

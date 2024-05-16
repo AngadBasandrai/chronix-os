@@ -58,6 +58,12 @@ addToCode:
 executeCode:
     call saveFile
 
+    call printNewLine
+    mov si, savedMsg
+    call printString
+    mov ah, 0x00
+    int 0x16
+
     jmp startEditor
 
 endEditor:
@@ -112,12 +118,15 @@ bottomMsg: db 'E', 0x1F, 'd', 0x1F,'i', 0x1F,'t', 0x1F,'o', 0x1F,'r', 0x1F,':', 
 'R', 0x1F,'u', 0x1F,'n', 0x1F,' ', 0x1F,' ', 0x1F,'$', 0x1F,' ', 0x1F, '=', 0x1F,' ',\
 0x1F,'E', 0x1F,'x', 0x1F,'i', 0x1F,'t', 0x1F,' ',0x1F,'E', 0x1F,'d', 0x1F,'i', 0x1F,'t', 0x1F,'o', 0x1F,'r', 0x1F,0
 
+savedMsg: db 'File Saved!', 0
+
 hexCode: times 511 db 0
 
     %include "include/screen/clear_text_screen.inc"
     %include "include/functions/print_string.inc"
     %include "include/functions/print_hex.inc"
     %include "include/functions/save_file.inc"
+    %include "include/utility/macros.inc"
     %include "include/utility/vars.inc"
 
 times 2048-($-$$) db 0
