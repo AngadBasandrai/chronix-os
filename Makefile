@@ -1,13 +1,19 @@
 OS:
+	make build
+	make compile
+	make run
+
+build:
 	make boot.iso
 	make kernel.iso
 	make fileTable.iso
 	make program1.iso
 	make editor.iso
 	make padding.iso
+
+compile:
 	make OS.iso
 	make clean
-	make run
 
 boot.iso:
 	nasm src\boot.asm -f bin -o boot.iso
