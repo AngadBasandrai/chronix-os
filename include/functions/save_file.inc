@@ -82,13 +82,11 @@ saveFile:
         xor dx, dx
         mov bx, 10
         div bx ; ax = ax//bx, dx = ax%bx
-        add dl, '0'
         mov [di], dl
         dec di
         xor dx, dx
         mov bx, 10
         div bx ; ax = ax//bx, dx = ax%bx
-        add dl, '0'
         mov [di], dl
 
     xor ax, ax
