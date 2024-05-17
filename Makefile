@@ -1,5 +1,4 @@
 OS:
-	make build
 	make compile
 	make run
 
@@ -12,6 +11,7 @@ build:
 	make padding.iso
 
 compile:
+	make build
 	make OS.iso
 	make clean
 
