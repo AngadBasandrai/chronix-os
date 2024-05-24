@@ -25,6 +25,23 @@ editorLoop:
     je executeCode
     cmp al, '$'
     je endEditor
+    cmp al, '0'
+    jl editorLoop
+    cmp al, '9'
+    jg checkLetter
+    jmp _endLetter
+    checkLetter:
+        cmp al, 'A'
+        jl editorLoop
+        cmp al, 'F'
+        jg checkLowerCase
+        jmp _endLetter
+    checkLowerCase:
+        cmp al, 'a'
+        jl editorLoop
+        cmp al, 'f'
+        jg editorLoop
+    _endLetter:
     mov ah, 0x0e
     int 0x10
     call asciiToHex
