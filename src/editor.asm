@@ -41,6 +41,7 @@ editorLoop:
         jl editorLoop
         cmp al, 'f'
         jg editorLoop
+        sub al, 0x20
     _endLetter:
     mov ah, 0x0e
     int 0x10
