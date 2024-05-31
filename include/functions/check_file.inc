@@ -150,6 +150,15 @@ openFile:
     mov dh, 0x00
     mov dl, 0x80
 
+    cmp cl, 0x02
+    je kernelJump
+
+    jmp notKernel
+
+kernelJump:
+    jmp 0x2000:0x0000
+
+notKernel:
     mov bx, fs
     mov es, bx
     pop bx
@@ -174,6 +183,10 @@ fileLoaded:
     mov fs, ax
     mov gs, ax
     mov ss, ax
+
+    mov sp, 0xFFFF ; stack pointer
+    mov ax, 0x9000
+    mov ss, ax 
 
     jmp 0x8000:0x0000 ;; find a way to use es:bx
 

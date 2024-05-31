@@ -6,10 +6,6 @@ mainMenu:
     
     call getInput
 
-end:
-    cli ;; clear interrupts
-    hlt ;; halt
-
     ;;; Includes
     %include "include/gfx/gfx_test.inc"
 

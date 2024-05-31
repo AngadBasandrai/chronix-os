@@ -6,7 +6,6 @@ build:
 	make boot.iso
 	make kernel.iso
 	make fileTable.iso
-	make program1.iso
 	make editor.iso
 	make padding.iso
 
@@ -27,10 +26,6 @@ kernel.iso:
 	nasm src\kernel.asm -f bin -o kernel.iso
 	move kernel.iso bin\kernel.iso
 
-program1.iso:
-	nasm src\program1.asm -f bin -o program1.iso
-	move program1.iso bin\program1.iso
-
 editor.iso:
 	nasm src\editor.asm -f bin -o editor.iso
 	move editor.iso bin\editor.iso
@@ -40,14 +35,13 @@ padding.iso:
 	move padding.iso bin\padding.iso
 
 OS.iso:
-	type bin\boot.iso bin\kernel.iso bin\fileTable.iso bin\program1.iso bin\editor.iso bin\padding.iso > OS.iso
+	type bin\boot.iso bin\kernel.iso bin\fileTable.iso bin\editor.iso bin\padding.iso > OS.iso
 	move OS.iso bin\OS.iso
 
 clean:
 	del bin\boot.iso
 	del bin\fileTable.iso
 	del bin\kernel.iso
-	del bin\program1.iso
 	del bin\editor.iso
 	del bin\padding.iso
 
