@@ -13,6 +13,11 @@
 ## Instructions
 
 #### Directions to Install
+- Go to the [Releases](https://github.com/AngadBasandrai/chronix-os-x86-asm/releases) page and install the binary
+- Install the requirements
+- Build and Run
+- Have fun!
+#### Directions to Build
 ```sh
 $ git clone https://github.com/AngadBasandrai/x86-asm-os.git
 ```
