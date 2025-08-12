@@ -1,49 +1,85 @@
-OS:
-	make compile
-	make run
+# Tools
+AS = nasm
+CC = gcc
+LD = ld
 
-build:
-	make boot.iso
-	make kernel.iso
-	make fileTable.iso
-	make editor.iso
-	make padding.iso
+# Directories
+BUILD_DIR = build
+BOOTLOADER_DIR = bootloader
+KERNEL_DIR = kernel
 
-compile:
-	make build
-	make OS.iso
-	make clean
+# Output file
+OS_IMAGE = chronix_v1.0.img
 
-boot.iso:
-	nasm src\boot.asm -f bin -o boot.iso
-	move boot.iso bin\boot.iso
+# Flags
+ASFLAGS = -f elf32
+CFLAGS = -m32 -ffreestanding -fno-builtin -nostdlib -Wall -Wextra -O2 -fno-pic -fno-pie
+LDFLAGS = -m elf_i386 -T $(KERNEL_DIR)/linker.ld
 
-fileTable.iso:
-	nasm src\file_table.asm -f bin -o fileTable.iso
-	move fileTable.iso bin\fileTable.iso
+# Create build directory
+$(BUILD_DIR):
+	mkdir -p $(BUILD_DIR)
 
-kernel.iso:
-	nasm src\kernel.asm -f bin -o kernel.iso
-	move kernel.iso bin\kernel.iso
+# Default target
+all: clean make run
 
-editor.iso:
-	nasm src\editor.asm -f bin -o editor.iso
-	move editor.iso bin\editor.iso
+# Main build target
+make: $(BUILD_DIR) $(OS_IMAGE)
 
-padding.iso:
-	nasm src\padding.asm -f bin -o padding.iso
-	move padding.iso bin\padding.iso
+# Build kernel
+$(BUILD_DIR)/kernel.bin: $(BUILD_DIR)/kernel_entry.o $(BUILD_DIR)/kernel.o
+	$(LD) $(LDFLAGS) -o $(BUILD_DIR)/kernel.elf $^
+	objcopy -O binary $(BUILD_DIR)/kernel.elf $(BUILD_DIR)/kernel.bin
 
-OS.iso:
-	type bin\boot.iso bin\kernel.iso bin\fileTable.iso bin\editor.iso bin\padding.iso > OS.iso
-	move OS.iso bin\OS.iso
+$(BUILD_DIR)/kernel_entry.o: $(KERNEL_DIR)/kernel_entry.asm | $(BUILD_DIR)
+	$(AS) $(ASFLAGS) $< -o $@
 
+$(BUILD_DIR)/kernel.o: $(KERNEL_DIR)/kernel.c | $(BUILD_DIR)
+	$(CC) $(CFLAGS) -c $< -o $@
+
+# Build bootloader
+$(BUILD_DIR)/bootloader_1.bin: $(BOOTLOADER_DIR)/bootloader_1.asm | $(BUILD_DIR)
+	$(AS) -f bin $< -o $@
+
+$(BUILD_DIR)/bootloader_2.bin: $(BOOTLOADER_DIR)/bootloader_2.asm | $(BUILD_DIR)
+	$(AS) -f bin $< -o $@
+
+# Create final bootable image
+$(OS_IMAGE): $(BUILD_DIR)/bootloader_1.bin $(BUILD_DIR)/bootloader_2.bin $(BUILD_DIR)/kernel.bin
+	dd if=/dev/zero of=$(BUILD_DIR)/$(OS_IMAGE) bs=1M count=2
+	dd if=$(BUILD_DIR)/bootloader_1.bin of=$(BUILD_DIR)/$(OS_IMAGE) conv=notrunc
+	dd if=$(BUILD_DIR)/bootloader_2.bin of=$(BUILD_DIR)/$(OS_IMAGE) conv=notrunc bs=512 seek=1
+	dd if=$(BUILD_DIR)/kernel.bin of=$(BUILD_DIR)/$(OS_IMAGE) conv=notrunc bs=512 seek=2
+	# Copy final image to root directory
+	cp $(BUILD_DIR)/$(OS_IMAGE) ./$(OS_IMAGE)
+	rm -f chronix_v1.0.img
+	# Clean up intermediate files, keep only essentials
+	rm -f $(BUILD_DIR)/*.bin $(BUILD_DIR)/*.o $(BUILD_DIR)/*.elf
+	@echo "Build complete! Final image: build/$(OS_IMAGE)"
+
+# Run in QEMU
+run: $(OS_IMAGE)
+	qemu-system-i386 -drive format=raw,file=build/$(OS_IMAGE),if=floppy -no-reboot -no-shutdown
+
+# Debug in QEMU
+debug: $(OS_IMAGE)
+	qemu-system-i386 -drive format=raw,file=build/$(OS_IMAGE),if=floppy -no-reboot -no-shutdown -s -S
+
+# Clean everything
 clean:
-	del bin\boot.iso
-	del bin\fileTable.iso
-	del bin\kernel.iso
-	del bin\editor.iso
-	del bin\padding.iso
+	rm -rf $(BUILD_DIR)
+	rm -f $(OS_IMAGE)
+	rm -f build/$(OS_IMAGE)
+	@echo "Cleaned build directory and OS image"
 
-run:
-	qemu-system-x86_64 -drive format=raw,file=bin\OS.iso
+# Help
+help:
+	@echo "Available targets:"
+	@echo "  all     - Clean, build, and run (default workflow)"
+	@echo "  make    - Build the OS image only"
+	@echo "  run     - Run the OS in QEMU"
+	@echo "  debug   - Run the OS in QEMU with debugging enabled"
+	@echo "  clean   - Clean all build files"
+	@echo "  help    - Show this help message"
+
+.PHONY: all make run debug clean help
