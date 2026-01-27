@@ -1,10 +1,11 @@
-/* kernel/linker.ld */
+/* linker.ld */
+
 ENTRY(_start)
 OUTPUT_FORMAT(elf32-i386)
 
 SECTIONS {
-    . = 0x10000;        /* Load kernel at 64KB - the address that worked! */
-    
+    . = 0x1000;
+
     .text : {
         *(.text)
     }

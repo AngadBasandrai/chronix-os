@@ -1,8 +1,11 @@
-; kernel/kernel_entry.asm
+; kernel_entry.asm
 [BITS 32]
-[extern kernel_main]     ; External C function
+; externally define kernel_main
+[extern kernel_main]
 
-global _start            ; Entry point symbol
+; define _start globally so that linker can find it
+global _start
 _start:
-    call kernel_main     ; Call C kernel
-    jmp $                ; Halt if kernel returns
+    ; go to main kernel
+    call kernel_main
+    jmp $
