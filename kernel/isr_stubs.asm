@@ -1,4 +1,6 @@
-; interrupts.asm
+; isr_stubs.asm
+; definition of isr_stubs to be used by the IDT
+
 [BITS 32]
 
 section .text

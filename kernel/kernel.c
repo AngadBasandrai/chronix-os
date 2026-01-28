@@ -1,6 +1,9 @@
 // kernel.c
+// The main OS kernel
+
 #include "interrupts.h"
 
+/// @brief The core loop of the kernel
 void kernel_main()
 {
     idt_init();

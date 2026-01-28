@@ -1,4 +1,5 @@
 // interrupts.h
+// Supporting header file for the IDT
 
 #pragma once
 #include <stdint.h>

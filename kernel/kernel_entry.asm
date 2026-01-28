@@ -1,4 +1,6 @@
 ; kernel_entry.asm
+; the entry point for the kernel
+
 [BITS 32]
 ; externally define kernel_main
 [extern kernel_main]
