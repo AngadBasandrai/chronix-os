@@ -7,7 +7,7 @@ extern exception_handler
 
 %macro isr_no_err_stub 1
 isr_stub_%+%1:
-    push dword 0          ; fake error code
+    push dword 0    ; fake error code
     push %1         ; vector
     jmp isr_common
 %endmacro
@@ -61,7 +61,7 @@ isr_stub_table:
 isr_common:
     pusha
 
-    mov ax, 0x10
+    mov ax, 0x1000
     mov ds, ax
     mov es, ax
     mov fs, ax

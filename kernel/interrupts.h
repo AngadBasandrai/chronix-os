@@ -17,11 +17,8 @@ typedef struct {
 } __attribute__((packed)) idtr_t;
 
 typedef struct {
-    uint32_t eax, ecx, edx, ebx;
-    uint32_t esp, ebp, esi, edi;
     uint32_t vector;
     uint32_t error_code;
-    uint32_t eip, cs, eflags;
 } interrupt_frame_t;
 
 
